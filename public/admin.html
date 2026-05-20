@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ-панель | Drive Premium</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f9ff;
+            padding: 40px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h1 { color: #0a2a44; margin-bottom: 20px; }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+        }
+        .btn-primary { background: #0a4b8a; color: white; }
+        .btn-outline { background: transparent; border: 2px solid #0a4b8a; color: #0a4b8a; }
+        .auth-bar {
+            background: #0a2a44;
+            padding: 10px 24px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            color: white;
+            border-radius: 60px;
+        }
+        .auth-bar a { color: white; text-decoration: none; }
+        .auth-bar button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Верхняя панель авторизации -->
+        <div class="auth-bar" id="authBar">
+            <div id="userInfo" style="display: none;">
+                <span id="userName"></span>
+                <button id="logoutBtn">Выйти</button>
+            </div>
+            <div id="guestInfo">
+                <a href="login.html">Войти</a>
+                <a href="register.html">Регистрация</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1>👑 Админ-панель</h1>
+            <p style="margin-bottom: 30px;">Добро пожаловать, администратор! Здесь вы можете управлять содержимым сайта.</p>
+            
+            <a href="admin-cars.html" class="btn btn-primary">🚗 Управление автомобилями</a>
+            <a href="/" class="btn btn-outline">← На главную</a>
+        </div>
+    </div>
+
+    <script>
+        async function checkAuth() {
+            const response = await fetch('/api/me');
+            const data = await response.json();
+            
+            if (data.user) {
+                document.getElementById('userInfo').style.display = 'flex';
+                document.getElementById('guestInfo').style.display = 'none';
+                document.getElementById('userName').innerHTML = `${data.user.first_name} ${data.user.last_name}`;
+                
+                // Если не админ — перенаправляем
+                if (data.user.role !== 'admin') {
+                    window.location.href = '/';
+                }
+            } else {
+                window.location.href = '/login.html';
+            }
+        }
+
+        async function logout() {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = '/';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) logoutBtn.addEventListener('click', logout);
+        });
+    </script>
+</body>
+</html>

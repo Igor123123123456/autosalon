@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Автосалон «Drive Premium» | Официальный дилер</title>
+    <!-- CSS прописан в начале в метатеге (в теге style) как требуется -->
+    <style>
+        /* ========== БАЗОВЫЕ СБРОСЫ И ШРИФТЫ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f9ff;
+            color: #1a2c3e;
+            line-height: 1.5;
+        }
+
+        /* подключение шрифта Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== КНОПКИ И ЭЛЕМЕНТЫ ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #0a4b8a;
+            color: white;
+            box-shadow: 0 6px 14px rgba(10, 75, 138, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #063a66;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(10, 75, 138, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #0a4b8a;
+            color: #0a4b8a;
+        }
+
+        .btn-outline:hover {
+            background: #0a4b8a;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline-light:hover {
+            background: white;
+            color: #0a4b8a;
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #e6f0ff;
+            color: #0a4b8a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: #4a627a;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ========== ШАПКА / НАВИГАЦИЯ ========== */
+        .header {
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #0a4b8a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0a2a44;
+        }
+
+        .logo-text span {
+            color: #0a4b8a;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a5f;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #0a4b8a;
+            font-weight: 600;
+        }
+
+        .header-phone {
+            font-weight: 700;
+            color: #0a4b8a;
+            background: #eef4fc;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b8a;
+        }
+
+        /* ========== ВЕРХНЯЯ ПАНЕЛЬ АВТОРИЗАЦИИ ========== */
+        .auth-bar {
+            background: #0a2a44;
+            padding: 10px 24px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        .auth-bar a {
+            color: white;
+            text-decoration: none;
+        }
+        .auth-bar a:hover {
+            text-decoration: underline;
+        }
+        .auth-bar button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .auth-bar button:hover {
+            background: white;
+            color: #0a2a44;
+        }
+        #userInfo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        #guestInfo {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* ========== ГЛАВНЫЙ БАННЕР ========== */
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-badge {
+            background: #0a4b8a10;
+            color: #0a4b8a;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0a2a44;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #2c4c6e;
+            margin-bottom: 32px;
+            max-width: 550px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats .stat {
+            font-weight: 500;
+            color: #1e3a5f;
+        }
+
+        .hero-stats .stat span {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #0a4b8a;
+            display: block;
+        }
+
+        .hero-image-placeholder {
+            flex: 1;
+            text-align: center;
+            background: #e2edfc;
+            border-radius: 36px;
+            padding: 20px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image-placeholder img {
+            max-width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .image-note {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #5f7f9e;
+        }
+
+        /* ========== ПОПУЛЯРНЫЕ МОДЕЛИ ========== */
+        .popular-cars {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .car-card {
+            background: #ffffff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            border: 1px solid #e9eff5;
+        }
+
+        .car-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(10, 75, 138, 0.15);
+        }
+
+        .car-img-placeholder img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #d9e8fb;
+        }
+
+        .car-info {
+            padding: 24px;
+        }
+
+        .car-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0a2a44;
+        }
+
+        .car-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #4a627a;
+        }
+
+        .car-details i {
+            width: 18px;
+            color: #0a4b8a;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-top: 1px solid #eef2f7;
+            padding-top: 16px;
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #0a4b8a;
+        }
+
+        .car-link {
+            color: #0a4b8a;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* ========== УСЛУГИ / ПРЕИМУЩЕСТВА ========== */
+        .services {
+            background: #f5f9ff;
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+        }
+
+        .service-item {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            border: 1px solid #e2edfc;
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            color: #0a4b8a;
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #0a2a44;
+        }
+
+        .service-item p {
+            color: #4a627a;
+        }
+
+        /* ========== ГАЛЕРЕЯ (МЕСТО ДЛЯ ВАШИХ ФОТО) ========== */
+        .gallery {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 43, 68, 0.85), transparent);
+            padding: 20px 16px;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* ========== ОТЗЫВЫ ========== */
+        .testimonials {
+            background: #f0f6ff;
+            padding: 80px 0;
+        }
+
+        .testimonials-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+        }
+
+        .stars {
+            color: #ffb700;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .testimonial-card p {
+            font-style: normal;
+            color: #2c3e50;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .client-info strong {
+            color: #0a4b8a;
+            display: block;
+        }
+
+        /* ========== CTA БЛОК С ЗАПИСЬЮ ========== */
+        .cta-section {
+            padding: 70px 0;
+            background: #0a2a44;
+            color: white;
+        }
+
+        .cta-section .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .cta-content {
+            flex: 1.2;
+        }
+
+        .cta-content h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-content p {
+            margin-bottom: 28px;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .contact-short {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 0.9rem;
+        }
+
+        .contact-short i {
+            margin-right: 8px;
+        }
+
+        .cta-image-placeholder {
+            flex: 0.8;
+            background: #1e4468;
+            border-radius: 28px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .cta-image-placeholder img {
+            width: 100%;
+            border-radius: 20px;
+            max-height: 260px;
+            object-fit: cover;
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            background: #071e30;
+            color: #cbdbe6;
+            padding: 56px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo .logo-text {
+            color: white;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #b2c9e0;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .contact-footer li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            background: #1e3a5f;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e3a5f;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                border-radius: 28px;
+                margin-top: 16px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            .hero-stats {
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero-buttons .btn {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+    <!-- Font Awesome 6 (иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- ========= ВЕРХНЯЯ ПАНЕЛЬ АВТОРИЗАЦИИ (ДОБАВЛЕНА) ========= -->
+    <div class="auth-bar">
+        <div id="userInfo" style="display: none;">
+            <i class="fas fa-user-circle"></i>
+            <span id="userName"></span>
+            <a href="profile.html">Личный кабинет</a>
+            <button id="logoutBtn">Выйти</button>
+        </div>
+        <div id="guestInfo">
+            <a href="login.html">Войти</a>
+            <a href="register.html">Регистрация</a>
+        </div>
+    </div>
+
+    <!-- ========= ШАПКА ========= -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-car-side"></i></div>
+                <div class="logo-text">Drive<span>Premium</span></div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="./index.html" class="active">Главная</a></li>
+                    <li><a href="./cars.html">Автомобили</a></li>
+                    <li><a href="./offers.html">Спецпредложения</a></li>
+                    <li><a href="./finance.html">Кредит и Trade-in</a></li>
+                    <li><a href="./about.html">О салоне</a></li>
+                    <li><a href="./contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-phone">
+                <i class="fas fa-phone-alt"></i> +7 (495) 888-33-11
+            </div>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========= ГЛАВНЫЙ БАННЕР С МЕСТОМ ДЛЯ ФОТО ========= -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">⭐ Официальный дилер</span>
+                    <h1>Премиум автомобили <br>с гарантией до 5 лет</h1>
+                    <p>Широкий выбор новых авто, выгодный Trade-in, кредит 0% и персональный подход. Найдите авто своей мечты!</p>
+                    <div class="hero-buttons">
+                        <a href="./cars.html" class="btn btn-primary">Подобрать авто <i class="fas fa-arrow-right"></i></a>
+                        <a href="./finance.html" class="btn btn-outline">Рассчитать кредит</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat"><span>350+</span> авто в наличии</div>
+                        <div class="stat"><span>98%</span> одобрений</div>
+                        <div class="stat"><span>5 лет</span> гарантии</div>
+                    </div>
+                </div>
+                <div class="hero-image-placeholder">
+                    <img src="./Images/фото_салона.png" alt="Фото автосалона">
+                    <div class="image-note">✨ здесь будет ваше главное фото</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= ПОПУЛЯРНЫЕ МОДЕЛИ (МЕСТА ДЛЯ ФОТО МАШИН) ========= -->
+        <section class="popular-cars">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Топ продаж</span>
+                    <h2>Популярные модели</h2>
+                    <p>Выберите автомобиль из новой линейки – каждый прошел полную предпродажную подготовку</p>
+                </div>
+                <div class="cars-grid">
+                    <div class="car-card">
+                        <div class="car-img-placeholder">
+                            <img src="./Images/BMW X5 xDrive40i.png" alt="Фото BMW X5">
+                        </div>
+                        <div class="car-info">
+                            <h3>BMW X5 xDrive40i</h3>
+                            <div class="car-details"><span><i class="fas fa-gas-pump"></i> Бензин</span><span><i class="fas fa-tachometer-alt"></i> 8.9 л</span><span><i class="fas fa-cogs"></i> Автомат</span></div>
+                            <div class="price-row"><span class="price">от 7 990 000 ₽</span><a href="./consultation.html" class="car-link">Заказать <i class="fas fa-chevron-right"></i></a></div>
+                        </div>
+                    </div>
+                    <div class="car-card">
+                        <div class="car-img-placeholder">
+                            <img src="./Images/Mercedes-Benz GLE.png" alt="Mercedes GLE">
+                        </div>
+                        <div class="car-info">
+                            <h3>Mercedes-Benz GLE</h3>
+                            <div class="car-details"><span><i class="fas fa-gas-pump"></i> Дизель</span><span><i class="fas fa-tachometer-alt"></i> 7.5 л</span><span><i class="fas fa-cogs"></i> 9G-TRONIC</span></div>
+                            <div class="price-row"><span class="price">от 8 490 000 ₽</span><a href="./consultation.html" class="car-link">Заказать <i class="fas fa-chevron-right"></i></a></div>
+                        </div>
+                    </div>
+                    <div class="car-card">
+                        <div class="car-img-placeholder">
+                            <img src="./Images/Audi Q7 55 TFSI.png" alt="Audi Q7">
+                        </div>
+                        <div class="car-info">
+                            <h3>Audi Q7 55 TFSI</h3>
+                            <div class="car-details"><span><i class="fas fa-gas-pump"></i> Бензин</span><span><i class="fas fa-tachometer-alt"></i> 9.1 л</span><span><i class="fas fa-cogs"></i> Типтроник</span></div>
+                            <div class="price-row"><span class="price">от 6 990 000 ₽</span><a href="./consultation.html" class="car-link">Заказать <i class="fas fa-chevron-right"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center"><a href="./cars.html" class="btn btn-outline">Весь каталог <i class="fas fa-arrow-right"></i></a></div>
+            </div>
+        </section>
+
+        <!-- ========= ПРЕИМУЩЕСТВА (ИНФОРМАТИВНО) ========= -->
+        <section class="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Почему мы?</span>
+                    <h2>Сервис и выгода</h2>
+                    <p>Полное сопровождение сделки, честные условия и забота о клиенте</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-item"><div class="service-icon"><i class="fas fa-percent"></i></div><h3>Кредит 0%</h3><p>Специальные программы от банков-партнеров, одобрение за 30 минут.</p></div>
+                    <div class="service-item"><div class="service-icon"><i class="fas fa-exchange-alt"></i></div><h3>Trade-in</h3><p>Обменяйте старый авто на новый с доплатой. Оценка за 1 час.</p></div>
+                    <div class="service-item"><div class="service-icon"><i class="fas fa-shield-alt"></i></div><h3>Гарантия 5 лет</h3><p>Расширенная гарантия и бесплатное ТО на 2 года.</p></div>
+                    <div class="service-item"><div class="service-icon"><i class="fas fa-clipboard-list"></i></div><h3>Помощь в выборе</h3><p>Персональный менеджер подберёт авто под ваши задачи, тест-драйв.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= ФОТОГАЛЕРЕЯ (МЕСТА ДЛЯ ВАШИХ ФОТО) ========= -->
+        <section class="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Фотогалерея</span>
+                    <h2>Наш автосалон в деталях</h2>
+                    <p>Современный шоурум, автомобили и уютная атмосфера</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="./Images/просторный_зал.png" alt="Шоурум"><div class="gallery-overlay">Просторный зал</div></div>
+                    <div class="gallery-item"><img src="./Images/новые_модели.png" alt="Автомобили"><div class="gallery-overlay">Новые модели</div></div>
+                    <div class="gallery-item"><img src="./Images/сервис.png" alt="Сервис"><div class="gallery-overlay">Профессиональный сервис</div></div>
+                    <div class="gallery-item"><img src="./Images/команда_экспертов.png" alt="Команда"><div class="gallery-overlay">Команда экспертов</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= ОТЗЫВЫ ========= -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Клиенты говорят</span>
+                    <h2>Реальные отзывы</h2>
+                    <p>Более 1000 довольных владельцев за прошлый год</p>
+                </div>
+                <div class="testimonials-slider">
+                    <div class="testimonial-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Купил BMW X5, автосалон порадовал скоростью оформления, Trade-in оценили выше рынка. Рекомендую!</p><div class="client-info"><strong>Артём К.</strong><span>BMW X5 владелец</span></div></div>
+                    <div class="testimonial-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Оформили кредит на Mercedes GLE за 1 день. Спасибо менеджеру за подбор выгодной ставки. Отличный сервис!</p><div class="client-info"><strong>Екатерина Д.</strong><span>Mercedes GLE</span></div></div>
+                    <div class="testimonial-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Остался очень доволен покупкой Audi Q7. В салоне приятная атмосфера, дали полную консультацию.</p><div class="client-info"><strong>Илья С.</strong><span>Audi Q7</span></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= CTA С ЗАПИСЬЮ НА ТЕСТ-ДРАЙВ (ФОТО) ========= -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Запишитесь на тест-драйв</h2>
+                    <p>Лично оцените автомобиль, прокатитесь по маршруту и получите индивидуальное предложение.</p>
+                    <div class="cta-buttons">
+                        <a href="./testdrive.html" class="btn btn-primary btn-large">Записаться сейчас</a>
+                        <a href="./consultation.html" class="btn btn-outline-light">Узнать наличие</a>
+                    </div>
+                    <div class="contact-short">
+                        <div><i class="fas fa-map-marker-alt"></i> Москва, ул. Автомобильная 15</div>
+                        <div><i class="fas fa-clock"></i> Ежедневно 9:00–21:00</div>
+                    </div>
+                </div>
+                <div class="cta-image-placeholder">
+                    <img src="./Images/тест драйв.png" alt="Тест-драйв фото">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========= ФУТЕР ========= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo footer-logo"><div class="logo-icon"><i class="fas fa-car-side"></i></div><div class="logo-text">Drive<span>Premium</span></div></div>
+                    <p>Официальный дилер премиальных авто. Надёжность и комфорт.</p>
+                    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col"><h3>Автомобили</h3><ul><li><a href="./cars.html">Новые авто</a></li><li><a href="./usedcars.html">С пробегом</a></li><li><a href="./offers.html">Спецпредложения</a></li><li><a href="./finance.html">Кредит от 0%</a></li></ul></div>
+                <div class="footer-col"><h3>Клиентам</h3><ul><li><a href="./finance.html">Trade-in оценка</a></li><li><a href="./insurance.html">Страхование</a></li><li><a href="./servicebooking.html">Запись на сервис</a></li><li><a href="./privacy.html">Политика</a></li></ul></div>
+                <div class="footer-col"><h3>Контакты</h3><ul class="contact-footer"><li><i class="fas fa-phone"></i> +7 (495) 888-33-11</li><li><i class="fas fa-envelope"></i> info@drivepremium.ru</li><li><i class="fas fa-map-pin"></i> Москва, Автомобильная 15</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 Drive Premium Автосалон. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if(toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // ========== АВТОРИЗАЦИЯ НА ГЛАВНОЙ СТРАНИЦЕ ==========
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/me');
+                const data = await response.json();
+                
+                if (data.user) {
+                    document.getElementById('userInfo').style.display = 'flex';
+                    document.getElementById('guestInfo').style.display = 'none';
+                    document.getElementById('userName').innerHTML = `${data.user.first_name} ${data.user.last_name}`;
+                    
+                    // Если пользователь админ, показываем ссылку на админ-панель
+                    if (data.user.role === 'admin') {
+                        const adminLink = document.createElement('a');
+                        adminLink.href = 'admin.html';
+                        adminLink.textContent = 'Админ-панель';
+                        document.getElementById('userInfo').appendChild(adminLink);
+                    }
+                } else {
+                    document.getElementById('userInfo').style.display = 'none';
+                    document.getElementById('guestInfo').style.display = 'flex';
+                }
+            } catch (error) {
+                console.error('Ошибка проверки авторизации:', error);
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch('/api/logout', { method: 'POST' });
+                window.location.reload();
+            } catch (error) {
+                console.error('Ошибка выхода:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) logoutBtn.addEventListener('click', logout);
+        });
+    </script>
+</body>
+</html>

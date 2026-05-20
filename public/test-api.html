@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест API - автосалон</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f6ff; }
+        .container { max-width: 800px; margin: 0 auto; }
+        button { background: #0a4b8a; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; margin: 5px; }
+        pre { background: #1e2a3a; color: #e2edfc; padding: 15px; border-radius: 12px; overflow-x: auto; }
+        input, textarea { margin: 5px; padding: 8px; border-radius: 8px; border: 1px solid #ccc; width: 200px; }
+        .section { background: white; padding: 20px; margin: 20px 0; border-radius: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 Тестирование API автосалона</h1>
+
+        <div class="section">
+            <h2>📥 GET /api/cars - все автомобили</h2>
+            <button onclick="getCars()">Загрузить список</button>
+            <pre id="getResult">Нажмите кнопку...</pre>
+        </div>
+
+        <div class="section">
+            <h2>🔍 GET /api/cars/:id - один автомобиль</h2>
+            <input type="number" id="carId" placeholder="ID авто (1-5)">
+            <button onclick="getCarById()">Найти</button>
+            <pre id="getOneResult"></pre>
+        </div>
+
+        <div class="section">
+            <h2>📤 POST /api/requests - отправить заявку</h2>
+            <input type="text" id="name" placeholder="Ваше имя"><br>
+            <input type="tel" id="phone" placeholder="Телефон"><br>
+            <input type="email" id="email" placeholder="Email"><br>
+            <textarea id="message" placeholder="Сообщение" rows="3"></textarea><br>
+            <button onclick="sendRequest()">Отправить заявку</button>
+            <pre id="postResult"></pre>
+        </div>
+    </div>
+
+    <script>
+        async function getCars() {
+            const res = await fetch('/api/cars');
+            const data = await res.json();
+            document.getElementById('getResult').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function getCarById() {
+            const id = document.getElementById('carId').value;
+            const res = await fetch(`/api/cars/${id}`);
+            const data = await res.json();
+            document.getElementById('getOneResult').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function sendRequest() {
+            const request = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            const res = await fetch('/api/requests', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(request)
+            });
+            const data = await res.json();
+            document.getElementById('postResult').textContent = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>

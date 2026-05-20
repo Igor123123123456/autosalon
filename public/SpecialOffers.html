@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Спецпредложения | Drive Premium — выгодные акции на авто</title>
+    <!-- Единый синий стиль с главной страницей -->
+    <style>
+        /* ========== БАЗОВЫЕ СБРОСЫ И ШРИФТЫ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f9ff;
+            color: #1a2c3e;
+            line-height: 1.5;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== КНОПКИ И ЭЛЕМЕНТЫ ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #0a4b8a;
+            color: white;
+            box-shadow: 0 6px 14px rgba(10, 75, 138, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #063a66;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(10, 75, 138, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #0a4b8a;
+            color: #0a4b8a;
+        }
+
+        .btn-outline:hover {
+            background: #0a4b8a;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-accent {
+            background: #e67e22;
+            color: white;
+            box-shadow: 0 6px 14px rgba(230, 126, 34, 0.25);
+        }
+        .btn-accent:hover {
+            background: #d35400;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-outline-light:hover {
+            background: white;
+            color: #0a4b8a;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #e6f0ff;
+            color: #0a4b8a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: #4a627a;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ========== ШАПКА / НАВИГАЦИЯ ========== */
+        .header {
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #0a4b8a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0a2a44;
+        }
+
+        .logo-text span {
+            color: #0a4b8a;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a5f;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #0a4b8a;
+            font-weight: 600;
+        }
+
+        .header-phone {
+            font-weight: 700;
+            color: #0a4b8a;
+            background: #eef4fc;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b8a;
+        }
+
+        /* ========== ГЕРОЙ-БАННЕР ДЛЯ СПЕЦПРЕДЛОЖЕНИЙ ========== */
+        .offers-hero {
+            background: linear-gradient(115deg, #0a2a44 0%, #145a8a 100%);
+            color: white;
+            padding: 60px 0 50px;
+            text-align: center;
+        }
+        .offers-hero h1 {
+            font-size: 2.7rem;
+            margin-bottom: 16px;
+        }
+        .offers-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hero-badge-offer {
+            background: #e67e22;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        /* ========== ОСНОВНОЙ БЛОК АКЦИЙ ========== */
+        .offers-section {
+            padding: 70px 0;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px -12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.25s, box-shadow 0.25s;
+            border: 1px solid #e9eff5;
+        }
+        .offer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -15px rgba(10, 75, 138, 0.25);
+        }
+
+        .offer-img img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+
+        .offer-content {
+            padding: 24px;
+        }
+        .offer-content h3 {
+            font-size: 1.6rem;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+        .offer-desc {
+            color: #4a627a;
+            margin-bottom: 20px;
+            line-height: 1.45;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #9aaebf;
+            font-size: 1rem;
+            margin-right: 12px;
+        }
+        .new-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #e67e22;
+        }
+        .price-row-offer {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .offer-timer {
+            background: #fef5e8;
+            padding: 12px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+            font-weight: 600;
+            color: #e67e22;
+        }
+        .timer-digits {
+            font-size: 1.3rem;
+            font-family: monospace;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+        .offer-footer {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        /* Лимитированное предложение */
+        .limited-banner {
+            background: linear-gradient(95deg, #fef5e8 0%, #ffe6d5 100%);
+            border-radius: 48px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .limited-text {
+            flex: 1.2;
+        }
+        .limited-text h3 {
+            font-size: 1.8rem;
+            color: #c0392b;
+        }
+        .limited-text p {
+            color: #5a3e2b;
+        }
+        .limited-img {
+            flex: 0.8;
+            text-align: center;
+        }
+        .limited-img img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            width: auto;
+            border-radius: 24px;
+            object-fit: contain;
+        }
+
+        /* ========== КРЕДИТНАЯ АКЦИЯ ========= */
+        .credit-offer {
+            background: #eef4fc;
+            padding: 60px 0;
+        }
+        .credit-grid {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .credit-content {
+            flex: 1;
+        }
+        .credit-content h2 {
+            font-size: 2rem;
+            color: #0a2a44;
+        }
+        .credit-percent {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0a4b8a;
+            margin: 16px 0;
+        }
+        .credit-image {
+            flex: 0.8;
+            background: #d9e8fb;
+            border-radius: 32px;
+            padding: 12px;
+        }
+        .credit-image img {
+            width: 100%;
+            border-radius: 24px;
+        }
+
+        /* ========== СТАТИСТИКА АКЦИЙ ========= */
+        .stats-offer {
+            background: white;
+            padding: 60px 0;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .stat-card h4 {
+            font-size: 2.3rem;
+            color: #0a4b8a;
+        }
+
+        /* ========== CTA БЛОК ========== */
+        .cta-section {
+            padding: 70px 0;
+            background: #0a2a44;
+            color: white;
+        }
+        .cta-section .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .cta-content {
+            flex: 1.2;
+        }
+        .cta-content h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        .contact-short {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            font-size: 0.9rem;
+        }
+        .cta-image-placeholder {
+            flex: 0.8;
+            background: #1e4468;
+            border-radius: 28px;
+            padding: 12px;
+            text-align: center;
+        }
+        .cta-image-placeholder img {
+            width: 100%;
+            border-radius: 20px;
+            max-height: 240px;
+            object-fit: cover;
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            background: #071e30;
+            color: #cbdbe6;
+            padding: 56px 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-logo .logo-text {
+            color: white;
+        }
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-col a {
+            text-decoration: none;
+            color: #b2c9e0;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: white;
+        }
+        .contact-footer li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+        .social-links a {
+            background: #1e3a5f;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.2s;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e3a5f;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                border-radius: 28px;
+                margin-top: 16px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .offers-hero h1 {
+                font-size: 2rem;
+            }
+            .limited-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .limited-img img {
+                max-height: 180px;
+            }
+        }
+        @media (max-width: 580px) {
+            .container {
+                padding: 0 20px;
+            }
+            .offer-card h3 {
+                font-size: 1.3rem;
+            }
+            .limited-img img {
+                max-height: 150px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- ШАПКА (единая) -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-car-side"></i></div>
+                <div class="logo-text">Drive<span>Premium</span></div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="./Index.html">Главная</a></li>
+                    <li><a href="./Cars.html">Автомобили</a></li>
+                    <li><a href="./SpecialOffers.html" class="active">Спецпредложения</a></li>
+                    <li><a href="./CreditAndTrade-In.html">Кредит и Trade-in</a></li>
+                    <li><a href="./AboutTheSalon.html">О салоне</a></li>
+                    <li><a href="./Contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-phone">
+                <i class="fas fa-phone-alt"></i> +7 (495) 888-33-11
+            </div>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой-секция спецпредложений -->
+        <section class="offers-hero">
+            <div class="container">
+                <div class="hero-badge-offer"><i class="fas fa-tags"></i> Ограниченное время</div>
+                <h1>Выгода до 1 500 000 ₽</h1>
+                <p>Специальные цены, кредит 0% и повышенный Trade‑in. Не упустите уникальные предложения!</p>
+            </div>
+        </section>
+
+        <!-- Сетка акций -->
+        <section class="offers-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">🔥 Горячие предложения</span>
+                    <h1>Акции этого месяца</h1>
+                    <p>Только до конца месяца действуют скидки и особые условия на популярные модели</p>
+                </div>
+                <div class="offers-grid">
+                    <!-- Карточка 1 -->
+                    <div class="offer-card">
+                        <div class="offer-img">
+                            <img src="./Images/BMW X5 xDrive40i.png" alt="BMW X5 акция">
+                        </div>
+                        <div class="offer-content">
+                            <span class="offer-badge"><i class="fas fa-gem"></i> Скидка 700 000 ₽</span>
+                            <h3>BMW X5 xDrive40i</h3>
+                            <p class="offer-desc">Комплектация M Sport Pro, адаптивная подвеска, панорамная крыша. Осталось 3 авто.</p>
+                            <div class="price-row-offer">
+                                <div><span class="old-price">8 690 000 ₽</span> <span class="new-price">7 990 000 ₽</span></div>
+                            </div>
+                            <div class="offer-timer">
+                                <i class="fas fa-hourglass-half"></i>
+                                <span>До конца акции:</span>
+                                <span class="timer-digits" data-days="7">7д 12ч</span>
+                            </div>
+                            <div class="offer-footer">
+                                <a href="./Consultation.html" class="btn btn-primary">Забронировать</a>
+                                <a href="./TestDrive.html" class="btn btn-outline">Тест-драйв</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Карточка 2 -->
+                    <div class="offer-card">
+                        <div class="offer-img">
+                            <img src="./Images/Mercedes-Benz GLE.png" alt="Mercedes GLE Coupe">
+                        </div>
+                        <div class="offer-content">
+                            <span class="offer-badge"><i class="fas fa-percent"></i> 0% кредит</span>
+                            <h3>Mercedes GLE Coupe</h3>
+                            <p class="offer-desc">Дизель, AMG пакет, кожа Nappa, первый взнос от 10%. Специальная ставка 0% на 36 месяцев.</p>
+                            <div class="price-row-offer">
+                                <div><span class="old-price">9 990 000 ₽</span> <span class="new-price">8 990 000 ₽</span></div>
+                            </div>
+                            <div class="offer-timer">
+                                <i class="fas fa-gift"></i>
+                                <span>Предложение действует до:</span>
+                                <span class="timer-digits" data-days="14">14д</span>
+                            </div>
+                            <div class="offer-footer">
+                                <a href="./Consultation.html" class="btn btn-primary">Оставить заявку</a>
+                                <a href="./CreditCalculator.html" class="btn btn-outline">Рассчитать кредит</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Карточка 3: Trade-in усиленный -->
+                    <div class="offer-card">
+                        <div class="offer-img">
+                            <img src="./Images/Audi e-tron GT quattro.png" alt="Audi e-tron GT">
+                        </div>
+                        <div class="offer-content">
+                            <span class="offer-badge"><i class="fas fa-exchange-alt"></i> Trade-in +300 000 ₽</span>
+                            <h3>Audi e-tron GT</h3>
+                            <p class="offer-desc">Электромобиль с запасом хода до 500 км. Дополнительная надбавка к вашему авто до 300 000 ₽.</p>
+                            <div class="price-row-offer">
+                                <div><span class="old-price">9 490 000 ₽</span> <span class="new-price">7 995 000 ₽</span></div>
+                            </div>
+                            <div class="offer-timer">
+                                <i class="fas fa-charging-station"></i>
+                                <span>Количество авто:</span>
+                                <span class="timer-digits">осталось 5 шт</span>
+                            </div>
+                            <div class="offer-footer">
+                                <a href="./Consultation.html" class="btn btn-primary">Узнать оценку</a>
+                                <a href="./Consultation.html" class="btn btn-outline">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ЛИМИТИРОВАННОЕ ПРЕДЛОЖЕНИЕ (эксклюзив) - с исправленным размером изображения -->
+                <div class="limited-banner">
+                    <div class="limited-text">
+                        <h3><i class="fas fa-stopwatch"></i> Лимитированная серия</h3>
+                        <p>Land Rover Defender 110 — специальная цена и расширенная гарантия 6 лет. Всего 2 автомобиля по акции.</p>
+                        <p><strong>Экономия 1 100 000 ₽</strong> + бесплатное КАСКО на год</p>
+                        <a href="./Consultation.html" class="btn btn-accent" style="margin-top: 16px;">Успеть по акции <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="limited-img">
+                        <img src="./Images/Land Rover Defender.png" alt="Land Rover Defender">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок кредитной акции -->
+        <section class="credit-offer">
+            <div class="container">
+                <div class="credit-grid">
+                    <div class="credit-content">
+                        <span class="section-tag" style="background: #0a4b8a20;">Кредит особый</span>
+                        <h2>Кредит по ставке <span style="color:#e67e22;">0,1%</span> на 3 года</h2>
+                        <div class="credit-percent">от 0,1% годовых</div>
+                        <p>При покупке любого автомобиля из наличия. Первоначальный взнос от 15%, одобрение в день обращения. Предложение ограничено.</p>
+                        <div style="margin-top: 20px;">
+                            <a href="./CreditCalculator.html" class="btn btn-primary">Рассчитать ежемесячный платёж</a>
+                        </div>
+                    </div>
+                    <div class="credit-image">
+                        <img src="./Images/тест драйв.png" alt="Кредитные условия">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок статистики акций -->
+        <section class="stats-offer">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card"><h4>12</h4><p>активных акций</p></div>
+                    <div class="stat-card"><h4>до 1,5 млн ₽</h4><p>максимальная выгода</p></div>
+                    <div class="stat-card"><h4>0%</h4><p>кредит на 6 моделей</p></div>
+                    <div class="stat-card"><h4>300+</h4><p>авто со скидкой</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA БЛОК (единый стиль) -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Не упустите выгоду!</h2>
+                    <p>Запишитесь прямо сейчас, чтобы успеть забрать автомобиль по специальной цене. Менеджер подберет оптимальную программу.</p>
+                    <div class="cta-buttons">
+                        <a href="./Consultation.html" class="btn btn-primary btn-large">Получить консультацию</a>
+                        <a href="./PromoSelection.html" class="btn btn-outline-light">Подбор авто по акции</a>
+                    </div>
+                    <div class="contact-short">
+                        <div><i class="fas fa-map-marker-alt"></i> Москва, ул. Автомобильная 15</div>
+                        <div><i class="fas fa-clock"></i> Ежедневно 9:00–21:00</div>
+                    </div>
+                </div>
+                <div class="cta-image-placeholder">
+                    <img src="./Images/фото_салона.png" alt="Салон акция">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo footer-logo"><div class="logo-icon"><i class="fas fa-car-side"></i></div><div class="logo-text">Drive<span>Premium</span></div></div>
+                    <p>Официальный дилер премиальных авто. Акции и специальные условия для каждого клиента.</p>
+                    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col"><h3>Автомобили</h3><ul><li><a href="./NewCars.html">Новые авто</a></li><li><a href="./UsedCars.html">С пробегом Premium</a></li><li><a href="./SpecialOffers.html">Спецпредложения</a></li><li><a href="./CreditCalculator.html">Кредит от 0%</a></li></ul></div>
+                <div class="footer-col"><h3>Клиентам</h3><ul><li><a href="./CreditAndTrade-In.html">Trade-in оценка</a></li><li><a href="./CascoInsurance.html">Страхование КАСКО</a></li><li><a href="./ServiceBooking.html">Запись на сервис</a></li><li><a href="./PrivacyPolicy.html">Политика</a></li></ul></div>
+                <div class="footer-col"><h3>Контакты</h3><ul class="contact-footer"><li><i class="fas fa-phone"></i> +7 (495) 888-33-11</li><li><i class="fas fa-envelope"></i> info@drivepremium.ru</li><li><i class="fas fa-map-pin"></i> Москва, Автомобильная 15</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 Drive Premium Автосалон. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if(toggleBtn) {
+            toggleBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+
+        // Простая имитация таймера для демонстрации
+        const timers = document.querySelectorAll('.timer-digits');
+        timers.forEach(el => {
+            if(el.getAttribute('data-days')) {
+                const days = el.getAttribute('data-days');
+                el.innerHTML = `${days} дней`;
+            }
+        });
+    </script>
+</body>
+</html>

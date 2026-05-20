@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>О салоне | Drive Premium — лидер в продаже премиум автомобилей</title>
+    <style>
+        /* ========== БАЗОВЫЕ СБРОСЫ И ШРИФТЫ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f9ff;
+            color: #1a2c3e;
+            line-height: 1.5;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== КНОПКИ И ЭЛЕМЕНТЫ ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #0a4b8a;
+            color: white;
+            box-shadow: 0 6px 14px rgba(10, 75, 138, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #063a66;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(10, 75, 138, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #0a4b8a;
+            color: #0a4b8a;
+        }
+
+        .btn-outline:hover {
+            background: #0a4b8a;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #e6f0ff;
+            color: #0a4b8a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: #4a627a;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ========== ШАПКА / НАВИГАЦИЯ ========== */
+        .header {
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #0a4b8a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0a2a44;
+        }
+
+        .logo-text span {
+            color: #0a4b8a;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a5f;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #0a4b8a;
+            font-weight: 600;
+        }
+
+        .header-phone {
+            font-weight: 700;
+            color: #0a4b8a;
+            background: #eef4fc;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b8a;
+        }
+
+        /* ========== ГЕРОЙ-БАННЕР ========== */
+        .about-hero {
+            background: linear-gradient(115deg, #0a2a44 0%, #1060a0 100%);
+            color: white;
+            padding: 60px 0 50px;
+            text-align: center;
+        }
+        .about-hero h1 {
+            font-size: 2.7rem;
+            margin-bottom: 16px;
+        }
+        .about-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ========== СЕКЦИЯ О КОМПАНИИ ========== */
+        .company-intro {
+            padding: 70px 0;
+            background: white;
+        }
+        .intro-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .intro-text {
+            flex: 1;
+        }
+        .intro-text h2 {
+            font-size: 2rem;
+            color: #0a2a44;
+            margin-bottom: 20px;
+        }
+        .intro-text p {
+            color: #4a627a;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .intro-image {
+            flex: 1;
+            background: #e2edfc;
+            border-radius: 32px;
+            padding: 12px;
+        }
+        .intro-image img {
+            width: 100%;
+            border-radius: 24px;
+        }
+
+        /* ========== ЦИФРЫ И ДОСТИЖЕНИЯ ========== */
+        .stats-about {
+            background: #f0f6ff;
+            padding: 60px 0;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #0a4b8a;
+            font-weight: 800;
+        }
+        .stat-item p {
+            color: #4a627a;
+            font-weight: 500;
+        }
+
+        /* ========== ПРЕИМУЩЕСТВА ========== */
+        .advantages {
+            padding: 70px 0;
+            background: white;
+        }
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .advantage-card {
+            background: #f8fafd;
+            border-radius: 28px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: transform 0.25s;
+            border: 1px solid #e2edfc;
+        }
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+        .advantage-icon {
+            font-size: 2.8rem;
+            color: #0a4b8a;
+            margin-bottom: 20px;
+        }
+        .advantage-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #0a2a44;
+        }
+
+        /* ========== КОМАНДА (МЕСТО ДЛЯ ФОТО СОТРУДНИКОВ) ========== */
+        .team-section {
+            padding: 70px 0;
+            background: #f5f9ff;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 20px;
+        }
+        .team-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            text-align: center;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .team-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+        .team-card h3 {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            color: #0a2a44;
+        }
+        .team-card p {
+            color: #0a4b8a;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* ========== ИСТОРИЯ / ХРОНОЛОГИЯ ========== */
+        .history {
+            padding: 70px 0;
+            background: white;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            background: #f8fafd;
+            padding: 24px;
+            border-radius: 28px;
+        }
+        .year {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0a4b8a;
+            min-width: 100px;
+        }
+        .timeline-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        /* ========== ОТЗЫВЫ О КОМПАНИИ ========== */
+        .reviews-about {
+            background: #f0f6ff;
+            padding: 70px 0;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .review-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+        }
+        .review-card .stars {
+            color: #ffb700;
+            margin-bottom: 16px;
+        }
+
+        /* ========== КОНТАКТЫ И КАРТА ========== */
+        .contacts-map {
+            padding: 70px 0;
+            background: white;
+        }
+        .contact-flex {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .contact-info-block {
+            flex: 1;
+        }
+        .contact-info-block h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .map-placeholder {
+            flex: 1;
+            background: #d9e8fb;
+            border-radius: 32px;
+            padding: 12px;
+            min-height: 300px;
+            text-align: center;
+        }
+        .map-placeholder img {
+            width: 100%;
+            border-radius: 24px;
+        }
+
+        /* ========== CTA ========== */
+        .cta-section {
+            padding: 60px 0;
+            background: #0a2a44;
+            color: white;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            background: #071e30;
+            color: #cbdbe6;
+            padding: 56px 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-logo .logo-text {
+            color: white;
+        }
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-col a {
+            text-decoration: none;
+            color: #b2c9e0;
+        }
+        .footer-col a:hover {
+            color: white;
+        }
+        .contact-footer li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+        .social-links a {
+            background: #1e3a5f;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e3a5f;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                border-radius: 28px;
+                margin-top: 16px;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            .timeline-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        @media (max-width: 580px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-car-side"></i></div>
+                <div class="logo-text">Drive<span>Premium</span></div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="./Index.html">Главная</a></li>
+                    <li><a href="./Cars.html">Автомобили</a></li>
+                    <li><a href="./SpecialOffers.html">Спецпредложения</a></li>
+                    <li><a href="./CreditAndTrade-In.html">Кредит и Trade-in</a></li>
+                    <li><a href="./AboutTheSalon.html" class="active">О салоне</a></li>
+                    <li><a href="./Contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-phone">
+                <i class="fas fa-phone-alt"></i> +7 (495) 888-33-11
+            </div>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Герой-блок -->
+        <section class="about-hero">
+            <div class="container">
+                <h1>О компании Drive Premium</h1>
+                <p>10 лет безупречной работы на рынке премиальных автомобилей. Индивидуальный подход и доверие тысяч клиентов.</p>
+            </div>
+        </section>
+
+        <!-- Введение + фото салона -->
+        <section class="company-intro">
+            <div class="container">
+                <div class="intro-grid">
+                    <div class="intro-text">
+                        <span class="section-tag">Кто мы</span>
+                        <h2>Ваш надёжный партнёр в мире автомобилей класса люкс</h2>
+                        <p>Drive Premium — официальный дилер ведущих мировых брендов. Мы предлагаем не просто автомобили, а полный спектр услуг: от подбора авто до послепродажного обслуживания. Наша цель — сделать процесс покупки комфортным и прозрачным.</p>
+                        <p>С 2015 года мы помогаем клиентам находить автомобили мечты, предоставляя лучшие условия кредитования, Trade-in и гарантийное обслуживание. Наши шоурумы оснащены по последнему слову техники, а команда экспертов всегда готова ответить на любые вопросы.</p>
+                        <a href="#" class="btn btn-primary">Связаться с нами <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="intro-image">
+                        <img src="./Images/фото_салона.png" alt="Интерьер автосалона">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Цифры / достижения -->
+        <section class="stats-about">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item"><h3>10+</h3><p>лет на рынке</p></div>
+                    <div class="stat-item"><h3>5000+</h3><p>довольных клиентов</p></div>
+                    <div class="stat-item"><h3>12</h3><p>автомобильных брендов</p></div>
+                    <div class="stat-item"><h3>98%</h3><p>рекомендаций</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Наши преимущества -->
+        <section class="advantages">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Почему выбирают нас</span>
+                    <h1>Ключевые преимущества</h1>
+                    <p>Мы ценим каждого клиента и создаём лучшие условия для покупки автомобиля</p>
+                </div>
+                <div class="advantages-grid">
+                    <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-certificate"></i></div><h3>Официальный дилер</h3><p>Гарантия завода-изготовителя и полное юридическое сопровождение.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-hand-holding-usd"></i></div><h3>Лучшие цены</h3><p>Прямые поставки и специальные программы от производителей.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-tools"></i></div><h3>Собственный сервис</h3><p>Профессиональное обслуживание и ремонт любой сложности.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon"><i class="fas fa-clock"></i></div><h3>Работаем 24/7</h3><p>Онлайн-консультации и запись на тест-драйв в любое время.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Команда (места для фото сотрудников) -->
+        <section class="team-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Наша команда</span>
+                    <h2>Эксперты своего дела</h2>
+                    <p>Профессионалы, которые помогут выбрать автомобиль и ответят на все вопросы</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="./Images/муж 1.png" alt="Менеджер">
+                        <h3>Александр Волков</h3>
+                        <p>Руководитель отдела продаж</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="./Images/жен 1.png" alt="Менеджер">
+                        <h3>Екатерина Морозова</h3>
+                        <p>Специалист по кредитованию</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="./Images/муж 2.png" alt="Менеджер">
+                        <h3>Дмитрий Белов</h3>
+                        <p>Эксперт по Trade-in</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="./Images/жен 2.png" alt="Менеджер">
+                        <h3>Ирина Григорьева</h3>
+                        <p>Клиентский сервис</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- История компании (хронология) -->
+        <section class="history">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Наша история</span>
+                    <h2>Как всё начиналось</h2>
+                    <p>Ключевые этапы развития Drive Premium</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item"><div class="year">2015</div><div class="timeline-text"><h4>Открытие первого автосалона</h4><p>Старт продаж в Москве. Первые 100 клиентов и партнёрство с BMW и Mercedes-Benz.</p></div></div>
+                    <div class="timeline-item"><div class="year">2018</div><div class="timeline-text"><h4>Расширение шоурума и брендов</h4><p>Открытие второго выставочного зала, добавление Audi, Porsche и Volvo.</p></div></div>
+                    <div class="timeline-item"><div class="year">2021</div><div class="timeline-text"><h4>Запуск кредитного центра</h4><p>Собственные программы кредитования и Trade-in. Признание лучшим дилером года.</p></div></div>
+                    <div class="timeline-item"><div class="year">2025</div><div class="timeline-text"><h4>Новый стандарт сервиса</h4><p>Внедрение цифровых технологий, онлайн-подбор и доставка авто клиентам.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы о компании -->
+        <section class="reviews-about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Отзывы</span>
+                    <h2>Что говорят наши клиенты</h2>
+                    <p>Реальные истории людей, которые выбрали Drive Premium</p>
+                </div>
+                <div class="reviews-grid">
+                    <div class="review-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Отличный салон! Покупал Mercedes GLE, помогли с Trade-in и кредитом. Всё прошло быстро, менеджеры настоящие профессионалы.</p><strong>Сергей Н.</strong><br><span style="color:#0a4b8a;">BMW клиент</span></div>
+                    <div class="review-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Очень довольна сервисом. Подобрали идеальный автомобиль, учли все пожелания. Спасибо команде Drive Premium!</p><strong>Анна В.</strong><br><span style="color:#0a4b8a;">Audi Q5</span></div>
+                    <div class="review-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Лучший автосалон в Москве. Профессиональная оценка Trade-in, честные цены. Рекомендую!</p><strong>Михаил Д.</strong><br><span style="color:#0a4b8a;">Porsche Cayenne</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты и карта -->
+        <section class="contacts-map">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Свяжитесь с нами</span>
+                    <h2>Как нас найти</h2>
+                    <p>Мы всегда рады видеть вас в нашем автосалоне</p>
+                </div>
+                <div class="contact-flex">
+                    <div class="contact-info-block">
+                        <h3>Drive Premium</h3>
+                        <div class="info-row"><i class="fas fa-map-marker-alt" style="color:#0a4b8a; font-size:1.4rem;"></i><div>Москва, ул. Автомобильная 15, стр.1<br>(м. Автозаводская, выход к ТТК)</div></div>
+                        <div class="info-row"><i class="fas fa-phone" style="color:#0a4b8a; font-size:1.4rem;"></i><div>+7 (495) 888-33-11</div></div>
+                        <div class="info-row"><i class="fas fa-envelope" style="color:#0a4b8a; font-size:1.4rem;"></i><div>info@drivepremium.ru</div></div>
+                        <div class="info-row"><i class="fas fa-clock" style="color:#0a4b8a; font-size:1.4rem;"></i><div>Ежедневно с 9:00 до 21:00</div></div>
+                        <div style="margin-top: 30px;"><a href="#" class="btn btn-primary">Построить маршрут <i class="fas fa-location-dot"></i></a></div>
+                    </div>
+                    <div class="map-placeholder">
+                        <img src="./Images/карта.png" alt="Карта проезда">
+                        <div class="image-note" style="margin-top: 10px;">* здесь может быть ваша карта или фото здания</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA - запись в салон -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Приглашаем вас в наш автосалон</h2>
+                <p style="margin-bottom: 30px; opacity:0.9;">Запишитесь на консультацию или тест-драйв — получите индивидуальное предложение</p>
+                <a href="#" class="btn btn-primary btn-large">Записаться сейчас</a>
+                <a href="#" class="btn btn-outline-light" style="margin-left: 16px;">Заказать звонок</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo footer-logo"><div class="logo-icon"><i class="fas fa-car-side"></i></div><div class="logo-text">Drive<span>Premium</span></div></div>
+                    <p>Официальный дилер премиальных авто. Акции и специальные условия для каждого клиента.</p>
+                    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col"><h3>Автомобили</h3><ul><li><a href="./NewCars.html">Новые авто</a></li><li><a href="./UsedCars.html">С пробегом Premium</a></li><li><a href="./SpecialOffers.html">Спецпредложения</a></li><li><a href="./CreditCalculator.html">Кредит от 0%</a></li></ul></div>
+                <div class="footer-col"><h3>Клиентам</h3><ul><li><a href="./CreditAndTrade-In.html">Trade-in оценка</a></li><li><a href="./CascoInsurance.html">Страхование КАСКО</a></li><li><a href="./ServiceBooking.html">Запись на сервис</a></li><li><a href="./PrivacyPolicy.html">Политика</a></li></ul></div>
+                <div class="footer-col"><h3>Контакты</h3><ul class="contact-footer"><li><i class="fas fa-phone"></i> +7 (495) 888-33-11</li><li><i class="fas fa-envelope"></i> info@drivepremium.ru</li><li><i class="fas fa-map-pin"></i> Москва, Автомобильная 15</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 Drive Premium Автосалон. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if(toggleBtn) {
+            toggleBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+        }
+    </script>
+</body>
+</html>

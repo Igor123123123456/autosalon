@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Запись на сервис | Drive Premium</title>
+    <style>
+        /* ========== БАЗОВЫЕ СБРОСЫ И ШРИФТЫ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f9ff;
+            color: #1a2c3e;
+            line-height: 1.5;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== КНОПКИ И ЭЛЕМЕНТЫ ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #0a4b8a;
+            color: white;
+            box-shadow: 0 6px 14px rgba(10, 75, 138, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #063a66;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(10, 75, 138, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #0a4b8a;
+            color: #0a4b8a;
+        }
+
+        .btn-outline:hover {
+            background: #0a4b8a;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline-light:hover {
+            background: white;
+            color: #0a4b8a;
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #e6f0ff;
+            color: #0a4b8a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: #4a627a;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ========== ШАПКА / НАВИГАЦИЯ ========== */
+        .header {
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #0a4b8a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0a2a44;
+        }
+
+        .logo-text span {
+            color: #0a4b8a;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a5f;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #0a4b8a;
+            font-weight: 600;
+        }
+
+        .header-phone {
+            font-weight: 700;
+            color: #0a4b8a;
+            background: #eef4fc;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b8a;
+        }
+
+        /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+        .service-section {
+            padding: 60px 0 80px;
+            background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        /* Левая колонка - форма */
+        .form-card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9eff5;
+        }
+
+        .form-card h2 {
+            font-size: 1.6rem;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+
+        .form-card > p {
+            color: #4a627a;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #0a2a44;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-group label i {
+            color: #0a4b8a;
+            margin-right: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            border: 1px solid #cfdfed;
+            background: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #1a2c3e;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0a4b8a;
+            box-shadow: 0 0 0 3px rgba(10, 75, 138, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #4a627a;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            width: 100%;
+            justify-content: center;
+            padding: 16px;
+            font-size: 1.05rem;
+            margin-top: 8px;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border-radius: 20px;
+            padding: 16px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Правая колонка - информация об услугах */
+        .info-card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9eff5;
+        }
+
+        .info-card h2 {
+            font-size: 1.6rem;
+            color: #0a2a44;
+            margin-bottom: 20px;
+        }
+
+        .service-list {
+            margin: 24px 0;
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .service-info h4 {
+            font-size: 1rem;
+            color: #0a2a44;
+            margin-bottom: 4px;
+        }
+
+        .service-info p {
+            font-size: 0.8rem;
+            color: #4a627a;
+        }
+
+        .service-price {
+            font-weight: 700;
+            color: #0a4b8a;
+        }
+
+        .advantages-list {
+            margin: 32px 0;
+            background: #f5f9ff;
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .advantage-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .advantage-item i {
+            color: #0a4b8a;
+            font-size: 1.1rem;
+            width: 24px;
+        }
+
+        .contact-block {
+            background: #e6f0ff;
+            border-radius: 24px;
+            padding: 24px;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .contact-phone {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0a4b8a;
+            margin: 12px 0;
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            background: #071e30;
+            color: #cbdbe6;
+            padding: 56px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo .logo-text {
+            color: white;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #b2c9e0;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .contact-footer li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            background: #1e3a5f;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e3a5f;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                border-radius: 28px;
+                margin-top: 16px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .section-header h1 {
+                font-size: 1.8rem;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .form-card, .info-card {
+                padding: 28px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                padding: 0 20px;
+            }
+            .form-card, .info-card {
+                padding: 24px;
+            }
+            .service-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+     <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-car-side"></i></div>
+                <div class="logo-text">Drive<span>Premium</span></div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="./Index.html" class="active">Главная</a></li>
+                    <li><a href="./Cars.html">Автомобили</a></li>
+                    <li><a href="./SpecialOffers.html">Спецпредложения</a></li>
+                    <li><a href="./CreditAndTrade-In.html">Кредит и Trade-in</a></li>
+                    <li><a href="./AboutTheSalon.html">О салоне</a></li>
+                    <li><a href="./Contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-phone">
+                <i class="fas fa-phone-alt"></i> +7 (495) 888-33-11
+            </div>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <section class="service-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Профессиональный сервис</span>
+                    <h1>Запись на сервис</h1>
+                    <p>Качественное обслуживание вашего автомобиля с гарантией</p>
+                </div>
+
+                <div class="service-grid">
+                    <!-- Левая колонка - форма -->
+                    <div class="form-card">
+                        <h2>Заполните форму</h2>
+                        <p>Мы перезвоним вам для подтверждения записи</p>
+
+                        <form id="serviceForm">
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Ваше имя *</label>
+                                <input type="text" id="userName" placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-phone-alt"></i> Номер телефона *</label>
+                                <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-car"></i> Марка и модель автомобиля *</label>
+                                <input type="text" id="carModel" placeholder="BMW X5, Mercedes GLE..." required>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-wrench"></i> Тип услуги *</label>
+                                <select id="serviceType" required>
+                                    <option value="">Выберите услугу</option>
+                                    <option value="to">Плановое ТО</option>
+                                    <option value="diagnostics">Компьютерная диагностика</option>
+                                    <option value="repair">Ремонт двигателя</option>
+                                    <option value="suspension">Ремонт подвески</option>
+                                    <option value="electrical">Электрика и электроника</option>
+                                    <option value="oil">Замена масла</option>
+                                    <option value="brakes">Ремонт тормозной системы</option>
+                                    <option value="conditioner">Заправка кондиционера</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-calendar"></i> Удобная дата *</label>
+                                    <input type="date" id="serviceDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-clock"></i> Удобное время *</label>
+                                    <select id="serviceTime" required>
+                                        <option value="">Выберите время</option>
+                                        <option value="09:00">09:00 - 10:00</option>
+                                        <option value="10:00">10:00 - 11:00</option>
+                                        <option value="11:00">11:00 - 12:00</option>
+                                        <option value="12:00">12:00 - 13:00</option>
+                                        <option value="13:00">13:00 - 14:00</option>
+                                        <option value="14:00">14:00 - 15:00</option>
+                                        <option value="15:00">15:00 - 16:00</option>
+                                        <option value="16:00">16:00 - 17:00</option>
+                                        <option value="17:00">17:00 - 18:00</option>
+                                        <option value="18:00">18:00 - 19:00</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label><i class="fas fa-comment"></i> Комментарий</label>
+                                <textarea id="userComment" placeholder="Опишите проблему или дополнительные пожелания..."></textarea>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="agreePolicy" checked>
+                                <label for="agreePolicy">Я согласен на обработку персональных данных</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary form-submit">
+                                Записаться на сервис <i class="fas fa-arrow-right"></i>
+                            </button>
+
+                            <div id="successMessage" class="success-message">
+                                <i class="fas fa-check-circle"></i> Заявка отправлена! Менеджер свяжется с вами для подтверждения записи.
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Правая колонка - информация -->
+                    <div class="info-card">
+                        <h2>Услуги сервисного центра</h2>
+                        <div class="service-list">
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4>Плановое ТО</h4>
+                                    <p>Замена масла, фильтров, диагностика</p>
+                                </div>
+                                <div class="service-price">от 5 900 ₽</div>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4>Компьютерная диагностика</h4>
+                                    <p>Полная проверка всех систем автомобиля</p>
+                                </div>
+                                <div class="service-price">от 2 500 ₽</div>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4>Ремонт двигателя</h4>
+                                    <p>Диагностика и ремонт любой сложности</p>
+                                </div>
+                                <div class="service-price">от 15 000 ₽</div>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4>Ремонт подвески</h4>
+                                    <p>Замена амортизаторов, сайлентблоков</p>
+                                </div>
+                                <div class="service-price">от 8 000 ₽</div>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4>Электрика и электроника</h4>
+                                    <p>Диагностика и ремонт электрооборудования</p>
+                                </div>
+                                <div class="service-price">от 3 500 ₽</div>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4>Заправка кондиционера</h4>
+                                    <p>Диагностика, заправка, дезинфекция</p>
+                                </div>
+                                <div class="service-price">от 3 200 ₽</div>
+                            </div>
+                        </div>
+
+                        <div class="advantages-list">
+                            <h3 style="margin-bottom: 16px; color: #0a2a44;">Наши преимущества</h3>
+                            <div class="advantage-item">
+                                <i class="fas fa-certificate"></i>
+                                <span>Сертифицированные специалисты</span>
+                            </div>
+                            <div class="advantage-item">
+                                <i class="fas fa-microscope"></i>
+                                <span>Современное диагностическое оборудование</span>
+                            </div>
+                            <div class="advantage-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Гарантия на все виды работ</span>
+                            </div>
+                            <div class="advantage-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Срочный ремонт в день обращения</span>
+                            </div>
+                            <div class="advantage-item">
+                                <i class="fas fa-car"></i>
+                                <span>Оригинальные запчасти</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-block">
+                            <h3><i class="fas fa-headset"></i> Нужна срочная помощь?</h3>
+                            <p>Позвоните нам, и мы поможем</p>
+                            <div class="contact-phone">
+                                <i class="fas fa-phone-alt"></i> +7 (495) 888-33-11
+                            </div>
+                            <p style="font-size: 0.8rem;">Ежедневно: 9:00 - 21:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo footer-logo"><div class="logo-icon"><i class="fas fa-car-side"></i></div><div class="logo-text">Drive<span>Premium</span></div></div>
+                    <p>Официальный дилер премиальных авто. Надёжность и комфорт.</p>
+                    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col"><h3>Автомобили</h3><ul><li><a href="./NewCars.html">Новые авто</a></li><li><a href="./UsedCars.html">С пробегом</a></li><li><a href="./SpecialOffers.html">Спецпредложения</a></li><li><a href="./CreditCalculator.html">Кредит от 0%</a></li></ul></div>
+                <div class="footer-col"><h3>Клиентам</h3><ul><li><a href="./CreditAndTrade-In.html">Trade-in оценка</a></li><li><a href="./Insurance.html">Страхование</a></li><li><a href="./ServiceBooking.html">Запись на сервис</a></li><li><a href="#">Политика конфиденциальности</a></li></ul></div>
+                <div class="footer-col"><h3>Контакты</h3><ul class="contact-footer"><li><i class="fas fa-phone"></i> +7 (495) 888-33-11</li><li><i class="fas fa-envelope"></i> info@drivepremium.ru</li><li><i class="fas fa-map-pin"></i> Москва, Автомобильная 15</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 Drive Premium Автосалон. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if(toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Маска для телефона
+        const phoneInput = document.getElementById('userPhone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            let formatted = '';
+            if (value.length > 0) formatted = '+7';
+            if (value.length > 1) formatted += ' (' + value.slice(1, 4);
+            if (value.length > 4) formatted += ') ' + value.slice(4, 7);
+            if (value.length > 7) formatted += '-' + value.slice(7, 9);
+            if (value.length > 9) formatted += '-' + value.slice(9, 11);
+            this.value = formatted;
+        });
+
+        // Установка минимальной даты (сегодня + 1 день, так как сегодня уже может быть занято)
+        const dateInput = document.getElementById('serviceDate');
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().split('T')[0];
+
+        // Обработка формы
+        const form = document.getElementById('serviceForm');
+        const successMsg = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const carModel = document.getElementById('carModel').value.trim();
+            const serviceType = document.getElementById('serviceType').value;
+            const date = document.getElementById('serviceDate').value;
+            const time = document.getElementById('serviceTime').value;
+            const agree = document.getElementById('agreePolicy').checked;
+            
+            if (!name) {
+                alert('Пожалуйста, укажите ваше имя');
+                return;
+            }
+            
+            if (!phone) {
+                alert('Пожалуйста, укажите номер телефона');
+                return;
+            }
+            
+            if (!carModel) {
+                alert('Пожалуйста, укажите марку и модель автомобиля');
+                return;
+            }
+            
+            if (!serviceType) {
+                alert('Пожалуйста, выберите тип услуги');
+                return;
+            }
+            
+            if (!date) {
+                alert('Пожалуйста, выберите дату');
+                return;
+            }
+            
+            if (!time) {
+                alert('Пожалуйста, выберите время');
+                return;
+            }
+            
+            if (!agree) {
+                alert('Пожалуйста, согласитесь на обработку персональных данных');
+                return;
+            }
+            
+            successMsg.classList.add('show');
+            form.reset();
+            
+            // Восстанавливаем атрибуты после сброса
+            document.getElementById('serviceDate').min = tomorrow.toISOString().split('T')[0];
+            
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

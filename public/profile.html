@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет | Drive Premium</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f9ff;
+            color: #1a2c3e;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+        .profile-card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .profile-header { text-align: center; margin-bottom: 32px; }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: #0a4b8a;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        h1 { color: #0a2a44; margin-bottom: 8px; }
+        .info-row {
+            display: flex;
+            padding: 16px 0;
+            border-bottom: 1px solid #eef2f7;
+        }
+        .info-label { width: 120px; font-weight: 600; color: #0a4b8a; }
+        .info-value { flex: 1; color: #1e3a5f; }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 24px;
+        }
+        .btn-primary { background: #0a4b8a; color: white; }
+        .btn-outline { border: 2px solid #0a4b8a; color: #0a4b8a; background: transparent; margin-left: 12px; }
+        .loading { text-align: center; padding: 60px; color: #0a4b8a; }
+        .auth-bar {
+            background: #0a2a44;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 20px;
+            color: white;
+        }
+        .auth-bar a { color: white; text-decoration: none; }
+        .auth-bar button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-bar" id="authBar">
+        <div id="userInfo">
+            <span id="userName"></span>
+            <button id="logoutBtn">Выйти</button>
+        </div>
+        <div id="guestInfo">
+            <a href="login.html">Войти</a>
+            <a href="register.html" style="margin-left: 16px;">Регистрация</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-card" id="profileContent">
+            <div class="loading">Загрузка данных...</div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/me');
+                const data = await response.json();
+                
+                if (data.user) {
+                    document.getElementById('userInfo').style.display = 'block';
+                    document.getElementById('guestInfo').style.display = 'none';
+                    document.getElementById('userName').innerHTML = `<i class="fas fa-user"></i> ${data.user.first_name} ${data.user.last_name}`;
+                    
+                    // Показываем данные профиля
+                    document.getElementById('profileContent').innerHTML = `
+                        <div class="profile-header">
+                            <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                            <h1>${data.user.first_name} ${data.user.last_name}</h1>
+                            <p>${data.user.role === 'admin' ? 'Администратор' : 'Пользователь'}</p>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Фамилия</div>
+                            <div class="info-value">${data.user.last_name}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Имя</div>
+                            <div class="info-value">${data.user.first_name}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Отчество</div>
+                            <div class="info-value">${data.user.middle_name || '—'}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">${data.user.email}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Роль</div>
+                            <div class="info-value">${data.user.role === 'admin' ? 'Администратор' : 'Клиент'}</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <a href="/" class="btn btn-primary">На главную</a>
+                        </div>
+                    `;
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                window.location.href = 'login.html';
+            }
+        }
+
+        async function logout() {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = '/';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkAuth();
+            document.getElementById('logoutBtn')?.addEventListener('click', logout);
+        });
+    </script>
+</body>
+</html>

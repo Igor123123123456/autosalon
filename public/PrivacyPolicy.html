@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Политика конфиденциальности | Drive Premium</title>
+    <style>
+        /* ========== БАЗОВЫЕ СБРОСЫ И ШРИФТЫ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f9ff;
+            color: #1a2c3e;
+            line-height: 1.5;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== КНОПКИ И ЭЛЕМЕНТЫ ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #0a4b8a;
+            color: white;
+            box-shadow: 0 6px 14px rgba(10, 75, 138, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #063a66;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(10, 75, 138, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #0a4b8a;
+            color: #0a4b8a;
+        }
+
+        .btn-outline:hover {
+            background: #0a4b8a;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: #e6f0ff;
+            color: #0a4b8a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0a2a44;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: #4a627a;
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* ========== ШАПКА / НАВИГАЦИЯ ========== */
+        .header {
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #0a4b8a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0a2a44;
+        }
+
+        .logo-text span {
+            color: #0a4b8a;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e3a5f;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: #0a4b8a;
+            font-weight: 600;
+        }
+
+        .header-phone {
+            font-weight: 700;
+            color: #0a4b8a;
+            background: #eef4fc;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #0a4b8a;
+        }
+
+        /* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+        .policy-section {
+            padding: 60px 0 80px;
+            background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+        }
+
+        .policy-content {
+            background: white;
+            border-radius: 32px;
+            padding: 48px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9eff5;
+        }
+
+        .policy-block {
+            margin-bottom: 40px;
+        }
+
+        .policy-block h2 {
+            font-size: 1.5rem;
+            color: #0a2a44;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e6f0ff;
+        }
+
+        .policy-block h3 {
+            font-size: 1.2rem;
+            color: #0a4b8a;
+            margin: 20px 0 12px 0;
+        }
+
+        .policy-block p {
+            color: #4a627a;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .policy-block ul {
+            margin: 16px 0 16px 24px;
+            color: #4a627a;
+        }
+
+        .policy-block li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .policy-date {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #eef2f7;
+            color: #8ba0b5;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px;
+            color: #0a4b8a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.2s;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        /* ========== ФУТЕР ========== */
+        .footer {
+            background: #071e30;
+            color: #cbdbe6;
+            padding: 56px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo .logo-text {
+            color: white;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #b2c9e0;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .contact-footer li {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            background: #1e3a5f;
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e3a5f;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 860px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                border-radius: 28px;
+                margin-top: 16px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .header .container {
+                flex-wrap: wrap;
+            }
+            .section-header h1 {
+                font-size: 1.8rem;
+            }
+            .policy-content {
+                padding: 32px;
+            }
+            .policy-block h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                padding: 0 20px;
+            }
+            .policy-content {
+                padding: 24px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-car-side"></i></div>
+                <div class="logo-text">Drive<span>Premium</span></div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="./Index.html" class="active">Главная</a></li>
+                    <li><a href="./Cars.html">Автомобили</a></li>
+                    <li><a href="./SpecialOffers.html">Спецпредложения</a></li>
+                    <li><a href="./CreditAndTrade-In.html">Кредит и Trade-in</a></li>
+                    <li><a href="./AboutTheSalon.html">О салоне</a></li>
+                    <li><a href="./Contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-phone">
+                <i class="fas fa-phone-alt"></i> +7 (495) 888-33-11
+            </div>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <section class="policy-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Юридическая информация</span>
+                    <h1>Политика конфиденциальности</h1>
+                    <p>О том, как мы собираем, используем и защищаем ваши персональные данные</p>
+                </div>
+
+                <div class="policy-content">
+                    <div class="policy-block">
+                        <h2>1. Общие положения</h2>
+                        <p>Настоящая Политика конфиденциальности (далее — «Политика») регулирует отношения по сбору, хранению, обработке и защите персональных данных пользователей (далее — «Пользователь» или «Вы») сайта автосалона «Drive Premium» (далее — «Сайт», «Мы», «Нас»).</p>
+                        <p>Используя Сайт и его сервисы, Вы даете согласие на обработку своих персональных данных в соответствии с настоящей Политикой. Если Вы не согласны с условиями Политики, пожалуйста, прекратите использование Сайта.</p>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>2. Какие данные мы собираем</h2>
+                        <p>При использовании Сайта мы можем собирать следующие персональные данные:</p>
+                        <ul>
+                            <li><strong>Контактная информация:</strong> имя, номер телефона, адрес электронной почты (которые Вы добровольно предоставляете при заполнении форм на Сайте).</li>
+                            <li><strong>Данные об автомобиле:</strong> марка, модель, год выпуска, VIN-номер (при оформлении заявок на сервис, кредит или покупку).</li>
+                            <li><strong>Технические данные:</strong> IP-адрес, тип браузера, операционная система, информация об устройстве, файлы cookie, данные о посещениях страниц.</li>
+                            <li><strong>Данные об обращениях:</strong> история обращений в поддержку, комментарии и вопросы, оставленные на Сайте.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>3. Цели обработки персональных данных</h2>
+                        <p>Мы обрабатываем ваши персональные данные исключительно в следующих целях:</p>
+                        <ul>
+                            <li>Обработка заявок на покупку автомобиля, кредит, тест-драйв, сервисное обслуживание и страхование.</li>
+                            <li>Консультирование по вопросам, связанным с приобретением и обслуживанием автомобилей.</li>
+                            <li>Направление информационных и рекламных сообщений об акциях, новинках и специальных предложениях (при вашем согласии).</li>
+                            <li>Улучшение работы Сайта и анализ поведения пользователей.</li>
+                            <li>Защита прав и законных интересов компании.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>4. Правовые основания обработки</h2>
+                        <p>Обработка персональных данных осуществляется на следующих правовых основаниях:</p>
+                        <ul>
+                            <li>Ваше добровольное согласие, выраженное путем заполнения форм на Сайте или отметки чекбокса о согласии с Политикой.</li>
+                            <li>Исполнение договора, стороной которого Вы являетесь (например, договора купли-продажи).</li>
+                            <li>Выполнение требований законодательства Российской Федерации.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>5. Как мы защищаем ваши данные</h2>
+                        <p>Мы принимаем все необходимые организационные и технические меры для защиты ваших персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных неправомерных действий третьих лиц.</p>
+                        <p>К таким мерам относятся:</p>
+                        <ul>
+                            <li>Использование HTTPS-протокола для шифрования передаваемых данных.</li>
+                            <li>Регулярное обновление программного обеспечения.</li>
+                            <li>Ограничение доступа к персональным данным сотрудников, которым эта информация необходима для выполнения должностных обязанностей.</li>
+                            <li>Хранение данных на защищенных серверах.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>6. Передача данных третьим лицам</h2>
+                        <p>Мы не передаем ваши персональные данные третьим лицам, за исключением следующих случаев:</p>
+                        <ul>
+                            <li>Банкам-партнерам для оформления кредитных договоров (с вашего согласия).</li>
+                            <li>Страховым компаниям для оформления полисов КАСКО и ОСАГО (с вашего согласия).</li>
+                            <li>Государственным органам в случаях, предусмотренных законодательством РФ.</li>
+                            <li>Сторонним сервисам аналитики (Яндекс.Метрика, Google Analytics) в обезличенном виде.</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>7. Ваши права</h2>
+                        <p>Вы имеете право:</p>
+                        <ul>
+                            <li>Получить информацию о том, какие ваши персональные данные обрабатываются.</li>
+                            <li>Требовать уточнения, блокирования или уничтожения ваших персональных данных в случае, если они являются неполными, устаревшими, недостоверными или полученными незаконным путем.</li>
+                            <li>Отозвать согласие на обработку персональных данных в любое время.</li>
+                            <li>Требовать прекращения обработки персональных данных для целей маркетинга.</li>
+                        </ul>
+                        <p>Для реализации любого из указанных прав, пожалуйста, свяжитесь с нами по контактам, указанным в разделе 10.</p>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>8. Сроки хранения данных</h2>
+                        <p>Мы храним ваши персональные данные не дольше, чем этого требуют цели их обработки, если иной срок не установлен законодательством РФ. После достижения целей обработки или в случае отзыва вашего согласия данные подлежат уничтожению или обезличиванию.</p>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>9. Использование файлов cookie</h2>
+                        <p>Сайт использует файлы cookie для обеспечения корректной работы, анализа трафика и улучшения пользовательского опыта. Вы можете в любой момент изменить настройки браузера, чтобы отключить использование cookie, однако это может повлиять на функциональность некоторых разделов Сайта.</p>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>10. Контактная информация</h2>
+                        <p>По всем вопросам, связанным с обработкой персональных данных, вы можете обратиться к нам:</p>
+                        <ul>
+                            <li><strong>Автосалон «Drive Premium»</strong></li>
+                            <li><strong>Адрес:</strong> г. Москва, ул. Автомобильная, д. 15</li>
+                            <li><strong>Телефон:</strong> +7 (495) 888-33-11</li>
+                            <li><strong>E-mail:</strong> privacy@drivepremium.ru</li>
+                        </ul>
+                    </div>
+
+                    <div class="policy-block">
+                        <h2>11. Изменение Политики</h2>
+                        <p>Мы оставляем за собой право в любое время вносить изменения в настоящую Политику. Актуальная версия всегда доступна на этой странице. Продолжая использовать Сайт после внесения изменений, вы подтверждаете свое согласие с новой редакцией Политики.</p>
+                    </div>
+
+                    <div class="policy-date">
+                        Актуальная версия от 15 мая 2025 года
+                    </div>
+
+                    <a href="./Index.html" class="back-link">
+                        <i class="fas fa-arrow-left"></i> Вернуться на главную
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo footer-logo"><div class="logo-icon"><i class="fas fa-car-side"></i></div><div class="logo-text">Drive<span>Premium</span></div></div>
+                    <p>Официальный дилер премиальных авто. Надёжность и комфорт.</p>
+                    <div class="social-links"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col"><h3>Автомобили</h3><ul><li><a href="./NewCars.html">Новые авто</a></li><li><a href="./UsedCars.html">С пробегом</a></li><li><a href="./SpecialOffers.html">Спецпредложения</a></li><li><a href="./CreditCalculator.html">Кредит от 0%</a></li></ul></div>
+                <div class="footer-col"><h3>Клиентам</h3><ul><li><a href="./CreditAndTrade-In.html">Trade-in оценка</a></li><li><a href="./Insurance.html">Страхование</a></li><li><a href="./ServiceBooking.html">Запись на сервис</a></li><li><a href="./PrivacyPolicy.html">Политика конфиденциальности</a></li></ul></div>
+                <div class="footer-col"><h3>Контакты</h3><ul class="contact-footer"><li><i class="fas fa-phone"></i> +7 (495) 888-33-11</li><li><i class="fas fa-envelope"></i> info@drivepremium.ru</li><li><i class="fas fa-map-pin"></i> Москва, Автомобильная 15</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 Drive Premium Автосалон. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const toggleBtn = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if(toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
